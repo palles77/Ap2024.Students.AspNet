@@ -1,0 +1,44 @@
+﻿@using Students.Interfaces
+@using System.Globalization
+@model Subject
+
+@inject ISharedResourcesService sharedResourcesService
+
+@{
+    CultureInfo cultureInfo = CultureInfo.GetCultureInfo(Context.Session.GetString("Culture") ?? "en-US");
+    ViewData["Title"] = "Edit";
+}
+
+
+<h1>@sharedResourcesService.GetString("Edit", cultureInfo)</h1>
+<h4>@sharedResourcesService.GetString("Subject", cultureInfo)</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">@sharedResourcesService.GetString("Name", cultureInfo)</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Credits" class="control-label">@sharedResourcesService.GetString("Credits", cultureInfo)</label>
+                <input asp-for="Credits" class="form-control" />
+                <span asp-validation-for="Credits" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@sharedResourcesService.GetString("Save", cultureInfo)" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@sharedResourcesService.GetString("BackToList", cultureInfo)</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,57 @@
+﻿@model Student
+
+@{
+    Layout = null;
+}   
+
+<div name="subjectsChoice">
+    <table>
+        <thead>
+            <th>Available subjects</th>
+            <th>Operations</th>
+            <th>Chosen subjects</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <select style="width: 300px;"
+                            multiple
+                            class="form-control"
+                            id="availableSubjects"
+                            name="subjectIdSrc">
+                        @{
+                            if (Model.AvailableSubjects != null)
+                            {
+                                foreach (var subject in Model.AvailableSubjects)
+                                {
+                                    <option value="@subject.Id">@subject.Name</option>
+                                }
+                            }
+                        }
+                    </select>
+                </td>
+                <td>
+                    <button type="button" style="width: 200px;" name="moveright" onclick="moveRight()">==></button>
+                    <button type="button" style="width: 200px;" name="moveleft" onclick="moveLeft()"><==</button>
+                </td>
+                <td>
+                    <select style="width: 300px;"
+                            multiple
+                            class="form-control"
+                            id="chosenSubjects"
+                            name="subjectIdDst">
+                        @{
+                            if (Model.StudentSubjects != null)
+                            {
+                                foreach (var ss in Model.StudentSubjects)
+                                {
+                                    <option value="@ss.Subject.Id">@ss.Subject.Name</option>
+                                }
+                            }
+                        }
+                    </select>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
