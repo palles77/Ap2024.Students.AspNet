@@ -24,10 +24,7 @@ public class StudentsContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        if (!optionsBuilder.IsConfigured)
-        {
-            optionsBuilder.UseSqlServer("StudentsContext");
-        }
+        optionsBuilder.UseInMemoryDatabase("StudentsContext");
     }
 
 
