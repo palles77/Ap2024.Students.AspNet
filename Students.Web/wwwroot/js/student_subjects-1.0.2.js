@@ -1,4 +1,4 @@
-﻿function moveRight() {
+﻿function subjectMoveRight() {
     var availableSubjects = document.getElementById('availableSubjects');
     var chosenSubjects = document.getElementById('chosenSubjects');
 
@@ -13,7 +13,7 @@
     }
 }
 
-function moveLeft() {
+function subjectMoveLeft() {
     var availableSubjects = document.getElementById('availableSubjects');
     var chosenSubjects = document.getElementById('chosenSubjects');
 

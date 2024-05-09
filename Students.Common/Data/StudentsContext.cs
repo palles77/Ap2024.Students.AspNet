@@ -40,10 +40,5 @@ public class StudentsContext : DbContext
             .HasOne(ss => ss.Student)
             .WithMany(s => s.StudentSubjects)
             .HasForeignKey(ss => ss.StudentId);
-
-        modelBuilder.Entity<StudentSubject>()
-            .HasOne(ss => ss.Subject)
-            .WithMany(s => s.StudentSubjects)
-            .HasForeignKey(ss => ss.SubjectId);
     }
 }

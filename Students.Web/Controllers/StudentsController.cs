@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Students.Common.Data;
 using Students.Common.Models;
 using Students.Interfaces;
-using Students.Services;
 
 namespace Students.Web.Controllers;
 
