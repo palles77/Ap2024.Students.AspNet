@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Students.Common.Data;
 using Students.Common.Models;
 using Students.Interfaces;
+using System.ComponentModel.DataAnnotations;
 
 namespace Students.Web.Controllers;
 
@@ -118,7 +119,12 @@ public class StudentsController : Controller
             {
                 student.AddSubject(chosenSubject);
             }
-            if (ModelState.IsValid)
+
+            var validationContext = new ValidationContext(student);
+            var validationResults = new List<ValidationResult>();
+            bool isValid = Validator.TryValidateObject(student, validationContext, validationResults, true);
+
+            if (isValid)
             {
                 _context.Add(student);
                 var additionResult = await _context.SaveChangesAsync();
@@ -130,6 +136,10 @@ public class StudentsController : Controller
             }
             else
             {
+                foreach (var validationResult in validationResults)
+                {
+                    ModelState.AddModelError("", validationResult.ErrorMessage);
+                }
                 result = View(student);
             }
         }

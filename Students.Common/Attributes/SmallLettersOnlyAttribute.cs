@@ -4,14 +4,14 @@ using System.Text.RegularExpressions;
 
 namespace Students.Common.Attributes;
 
-public class CapitalLettersOnlyAttribute : ValidationAttribute, IClientModelValidator
+public class SmallLettersOnlyAttribute : ValidationAttribute, IClientModelValidator
 {
     public override bool IsValid(object? value)
     {
         bool result = false;
         if (value is string str)
         {
-            if (Regex.IsMatch(str, @"^[A-Z\s]+$"))
+            if (Regex.IsMatch(str, @"^[a-z\s]+$"))
             {
                 result = true;
             }
@@ -22,10 +22,10 @@ public class CapitalLettersOnlyAttribute : ValidationAttribute, IClientModelVali
 
     protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
     {
-        ValidationResult? result = new ValidationResult($"{validationContext.DisplayName} must contain only capital letters.");
+        ValidationResult? result = new ValidationResult($"{validationContext.DisplayName} must contain only small letters.");
         if (value is string str)
         {
-            if (Regex.IsMatch(str, @"^[A-Z\s]+$"))
+            if (Regex.IsMatch(str, @"^[a-z\s]+$"))
             {
                 result = ValidationResult.Success;
             }
@@ -42,7 +42,7 @@ public class CapitalLettersOnlyAttribute : ValidationAttribute, IClientModelVali
         }
 
         MergeAttribute(context.Attributes, "data-val", "true");
-        MergeAttribute(context.Attributes, "data-val-capital-letters-only", "The field must contain only capital letters.");
+        MergeAttribute(context.Attributes, "data-val-small-letters-only", "The field must contain only small letters.");
     }
 
     private bool MergeAttribute(IDictionary<string, string> attributes, string key, string value)
