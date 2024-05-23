@@ -1,4 +1,4 @@
-﻿function moveRight() {
+﻿function subjectMoveRight() {
     var availableSubjects = document.getElementById('availableSubjects');
     var chosenSubjects = document.getElementById('chosenSubjects');
 
@@ -13,7 +13,7 @@
     }
 }
 
-function moveLeft() {
+function subjectMoveLeft() {
     var availableSubjects = document.getElementById('availableSubjects');
     var chosenSubjects = document.getElementById('chosenSubjects');
 
@@ -33,5 +33,20 @@ function selectChosenSubjects() {
 
     for (var i = 0; i < chosenSubjects.options.length; i++) {
         chosenSubjects.options[i].selected = true;
+    }
+
+    // Get the form that contains the chosenSubjects select box
+    var form = chosenSubjects.form;
+
+    // Check if the form is valid
+    if (!form.checkValidity()) {
+        // If the form is not valid, prevent its submission
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+        });
+
+        // Add the 'was-validated' class to the form to show validation feedback
+        form.classList.add('was-validated');
     }
 }

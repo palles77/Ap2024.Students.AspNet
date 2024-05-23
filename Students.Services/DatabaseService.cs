@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Students.Common.Data;
 using Students.Common.Models;
 using Students.Interfaces;
+using System.ComponentModel.DataAnnotations;
 
 namespace Students.Services;
 
@@ -40,8 +41,8 @@ public class DatabaseService : IDatabaseService
 
             // Get the chosen subjects
             var chosenSubjects = _context.Subject
-                .Where(s => subjectIdDst.Contains(s.Id))
-                .ToList();
+            .Where(s => subjectIdDst.Contains(s.Id))
+            .ToList();
 
             // Remove the existing StudentSubject entities for the student
             var studentSubjects = _context.StudentSubject

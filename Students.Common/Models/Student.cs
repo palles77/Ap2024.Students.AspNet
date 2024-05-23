@@ -1,3 +1,4 @@
+using Students.Common.Attributes;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,7 +9,7 @@ public class Student
     public int Id { get; set; }
 
     [Required]
-    [StringLength(100)]
+    [CapitalLettersOnly]
     public string Name { get; set; } = string.Empty;
 
     [Range(1, 100)]

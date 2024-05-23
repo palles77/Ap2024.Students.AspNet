@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Students.Common.Models;
-using System.Collections.Generic;
-using System.IO;
 
 namespace Students.Common.Data
 {
@@ -59,11 +57,14 @@ namespace Students.Common.Data
                 var jsonData = File.ReadAllText("data.json");
                 var data = JsonConvert.DeserializeObject<Data>(jsonData);
 
-                Student.AddRange(data.Students);
-                Subject.AddRange(data.Subjects);
-                StudentSubject.AddRange(data.StudentSubjects);
-                Animal.AddRange(data.Animals);
-                Book.AddRange(data.Books);
+                if (data != null)
+                {
+                    Student.AddRange(data.Students);
+                    Subject.AddRange(data.Subjects);
+                    StudentSubject.AddRange(data.StudentSubjects);
+                    Animal.AddRange(data.Animals);
+                    Book.AddRange(data.Books);
+                }
             }
         }
 
@@ -85,10 +86,10 @@ namespace Students.Common.Data
 
     public class Data
     {
-        public IEnumerable<Student> Students { get; set; }
-        public IEnumerable<Subject> Subjects { get; set; }
-        public IEnumerable<StudentSubject> StudentSubjects { get; set; }
-        public IEnumerable<Animal> Animals { get; set; }
-        public IEnumerable<Book> Books { get; set; }
+        public IEnumerable<Student> Students { get; set; } = new List<Student>();
+        public IEnumerable<Subject> Subjects { get; set; } = new List<Subject>();
+        public IEnumerable<StudentSubject> StudentSubjects { get; set; } = new List<StudentSubject>();
+        public IEnumerable<Animal> Animals { get; set; } = new List<Animal>();
+        public IEnumerable<Book> Books { get; set; } = new List<Book>();
     }
 }
