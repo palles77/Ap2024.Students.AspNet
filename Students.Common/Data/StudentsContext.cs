@@ -21,6 +21,7 @@ public class StudentsContext : DbContext
 
     public DbSet<Animal> Animal { get; set; }
     public DbSet<Book> Book { get; set; }
+    public DbSet<Cat> Cat { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
